@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+
+.otp-custom .ant-input {
+  border-color: #86efac;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.otp-custom .ant-input:focus {
+  box-shadow: 0 0 0 2px #8aff8a55;
+}
