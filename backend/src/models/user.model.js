@@ -18,6 +18,25 @@ const userSchema = new mongoose.Schema(
             enum:['BENEFICIARY','OFFICER'],
             required:true
         },
+        loanAmount:{
+            type:String,
+            required:true,
+        },
+        purpose:{
+            type:String,
+            required:true
+        },
+        district:{
+            type:String,
+            required:true
+        },
+        state:{
+            type:String,
+            required:true
+        },
+        sanctionDate:{
+            type:String,
+        },
         isActive:{
             type:Boolean,
             default:true
