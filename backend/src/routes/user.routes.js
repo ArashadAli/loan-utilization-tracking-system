@@ -1,7 +1,7 @@
 import express from 'express';
 import {
   getAllBeneficiaries,
-  activateBeneficiary,
+  approveBeneficiary,
   deactivateUser,
 } from '../controllers/userController.js';
 
@@ -9,11 +9,16 @@ import { protect, authorize } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-// All routes below are officer-only
+// All routes in this file are officer-only
 router.use(protect, authorize('OFFICER'));
 
-router.get('/beneficiaries',          getAllBeneficiaries);
-router.patch('/beneficiaries/:userId/activate',  activateBeneficiary);
-router.patch('/users/:userId/deactivate',        deactivateUser);
+// List all beneficiaries
+router.get('/beneficiaries', getAllBeneficiaries);
+
+// Approve a beneficiary (activates their account)
+router.patch('/:userId/approve', approveBeneficiary);
+
+// Deactivate any user (usually beneficiary)
+router.patch('/:userId/deactivate', deactivateUser);
 
 export default router;
