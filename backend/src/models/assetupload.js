@@ -58,6 +58,7 @@ const assetUploadSchema = new mongoose.Schema(
   }
 );
 
+
 const UploadAsset = mongoose.model('AssetUpload', assetUploadSchema);
 
 export default UploadAsset
