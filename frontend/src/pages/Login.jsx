@@ -7,13 +7,16 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSendOtp = async () => {
+    if (phone.length !== 10) {
+      alert("Please enter your 10 digit phone number");
+      return;
+    }
+
     navigate("/otp", { state: { phone } });
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white px-4">
-
-      {/* Animated Card */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -38,11 +41,15 @@ const Login = () => {
           <motion.input
             whileFocus={{ scale: 1.03 }}
             type="tel"
-            placeholder="Enter phone number"
+            placeholder="Enter 10 digit phone number"
+            required
+            maxLength={10}
+            value={phone}
+            onChange={(e) =>
+              setPhone(e.target.value.replace(/\D/g, ""))
+            }
             className="w-full px-4 py-3 text-sm border border-green-300 rounded-xl
                        focus:outline-none focus:ring-2 focus:ring-[#8AFF8A]"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
           />
         </div>
 
@@ -58,7 +65,6 @@ const Login = () => {
         </motion.button>
 
         {/* Footer */}
-
         <div className="mt-4">
           <p className="text-xs text-center text-gray-400">
             Secure OTP-based authentication

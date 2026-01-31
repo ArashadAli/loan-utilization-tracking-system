@@ -22,6 +22,13 @@ const Otp = () => {
   }, [timeLeft]);
 
   const handleVerify = () => {
+    //otp length
+    if (otp.length !== 6) {
+    alert("Please enter 6 digit OTP");
+    return;
+  }
+  //backeng verification baad me
+  //dummy api logic
     const res = {
       data: {
         role: "USER",
@@ -37,6 +44,15 @@ const Otp = () => {
         ? "/user-dashboard"
         : "/officer-dashboard"
     );
+  };
+
+  // NEW: Resend OTP Handler
+  const handleResendOtp = () => {
+    setOtp("");        // clear OTP boxes
+    setTimeLeft(60);   // restart timer
+
+    // Future: API call for resend OTP
+    // resendOtpApiCall();
   };
 
   return (
@@ -57,7 +73,7 @@ const Otp = () => {
 
         {/* Components */}
         <OtpInput otp={otp} setOtp={setOtp} />
-        <OtpTimer timeLeft={timeLeft} />
+        <OtpTimer timeLeft={timeLeft} onResend={handleResendOtp} />
         <VerifyButton timeLeft={timeLeft} onVerify={handleVerify} />
       </motion.div>
     </div>

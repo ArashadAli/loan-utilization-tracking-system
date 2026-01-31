@@ -2,7 +2,7 @@ const OtpTimer = ({ timeLeft, onResend }) => {
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
 
-  // ⏱️ Countdown running
+  // Countdown running
   if (timeLeft > 0) {
     return (
       <p className="text-sm text-center mb-4 text-gray-500">
@@ -11,7 +11,7 @@ const OtpTimer = ({ timeLeft, onResend }) => {
     );
   }
 
-  // 🔁 Time over → Resend link
+  // Time over → Resend link
   return (
     <p className="text-sm text-center mb-4 text-red-500">
       OTP expired.{" "}

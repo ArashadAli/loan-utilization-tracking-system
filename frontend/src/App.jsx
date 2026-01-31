@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import Login from "./pages/Login.jsx";
 import Otp from "./pages/Otp.jsx";
 import UserDashboard from "./pages/UserDashboard.jsx";
