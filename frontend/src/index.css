@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 .otp-custom .ant-input {
   border-color: #86efac;
   border-radius: 10px;
@@ -11,7 +10,6 @@
 .otp-custom .ant-input:focus {
   box-shadow: 0 0 0 2px #8aff8a55;
 }
-
 
 /* Otp input box ko square banaya */
 
