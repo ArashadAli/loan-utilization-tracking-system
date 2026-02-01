@@ -4,12 +4,12 @@ import Login from "./pages/Login.jsx";
 import Otp from "./pages/Otp.jsx";
 import UserDashboard from "./pages/UserDashboard.jsx";
 import OfficerDashboard from "./pages/OfficerDashboard.jsx";
-
+import HomePage from "./pages/HomePage.jsx";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-       <Route path="/" element={<Login />} />
+       <Route path="/" element={<HomePage />} />
         <Route path="/otp" element={<Otp />} />
         <Route path="/user-dashboard" element={<UserDashboard />} />
         <Route path="/officer-dashboard" element={<OfficerDashboard />} />
