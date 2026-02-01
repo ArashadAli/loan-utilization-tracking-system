@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
-
+import { generateOTP } from "../config/generateOTP.js";
+import { sendOtpSMS } from "../services/sendOtpSms.js";
 export const register = async (req, res) => {
   try {
     const { name, mobileNumber, role, password } = req.body;
@@ -64,11 +65,13 @@ export const login = async (req, res) => {
     const { mobileNumber, password } = req.body;
 
     if (!mobileNumber || !password) {
-      return res.status(400).json({ error: "Mobile number and password required" });
+      return res.status(400).json({
+        error: "Mobile number and password are required",
+      });
     }
 
-    // Important: select password explicitly
     const user = await User.findOne({ mobileNumber }).select("+password");
+
     if (!user) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
@@ -80,33 +83,28 @@ export const login = async (req, res) => {
 
     if (!user.isActive) {
       return res.status(403).json({
-        error: "Account is not active (awaiting approval)",
+        error: "Account is not active",
       });
     }
 
-    const token = jwt.sign(
-      { id: user._id, role: user.role },
-      process.env.JWT_SECRET,
-      { expiresIn: "7d" }
-    );
+    // 🔢 Generate OTP
+    const otp = generateOTP();
+    user.otp = otp;
+    user.otpExpiresAt = Date.now() + 2 * 60 * 1000;
+    await user.save();
 
-    res.json({
+    // 📲 Send OTP here (SMS service)
+    
+    await sendOtpSMS(user.mobileNumber, otp);
+
+    return res.status(200).json({
       success: true,
-      token,
-      user: {
-        id: user._id,
-        name: user.name,
-        mobileNumber: user.mobileNumber,
-        role: user.role,
-        isActive: user.isActive,
-      },
+      message: "OTP sent to registered mobile number",
+      otpRequired: true,
     });
   } catch (err) {
     console.error("Login error:", err);
-    res.status(500).json({
-      error: "Server error during login",
-      ...(process.env.NODE_ENV === "development" && { details: err.message }),
-    });
+    return res.status(500).json({ error: "Server error" });
   }
 };
 

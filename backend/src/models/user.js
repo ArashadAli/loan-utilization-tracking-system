@@ -28,6 +28,13 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    otp:{
+      type:String,
+      default:null
+    },
+    otpExpiresAt:{
+      type:Date,
+    },
     registeredBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

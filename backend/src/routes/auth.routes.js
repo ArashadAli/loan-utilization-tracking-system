@@ -3,11 +3,12 @@ import { register, login, getCurrentUser } from "../controllers/authController.j
 import { protect, authorize } from "../middleware/authMiddleware.js";
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
-
+import { verifyOtp } from "../controllers/verifyOTP.js";
 const router = express.Router();
 
 // Public routes
 router.post("/login", login);
+router.post("/verify-otp", verifyOtp)
 
 // Protected: officer creates beneficiary
 router.post("/register", protect, authorize("OFFICER"), register);
