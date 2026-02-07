@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+.otp-custom .ant-input {
+  border-color: #86efac;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.otp-custom .ant-input:focus {
+  box-shadow: 0 0 0 2px #8aff8a55;
+}
+
+/* Otp input box ko square banaya */
+
+.otp-square .ant-input {
+  border-radius: 6px; /* square look */
+  width: 48px;
+  height: 44px;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* Gap between boxes */
+.otp-square .ant-input-group {
+  gap: 12px;
+}
+
+/* Focus effect */
+.otp-square .ant-input:focus {
+  border-color: #8aff8a;
+  box-shadow: 0 0 0 2px rgba(138, 255, 138, 0.3);
+}
