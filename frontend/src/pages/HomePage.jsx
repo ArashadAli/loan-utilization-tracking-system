@@ -1,8 +1,13 @@
 import Navbar from "../components/homeNavbar/Navbar.jsx"
-
+import BackgroundVideo from "../components/BackgroundVideo";
 const HomePage = () => {
     return(
-        <Navbar/>
+        <>
+          <Navbar/>
+         <BackgroundVideo/>
+        </>
+      
+
     )
 }
 

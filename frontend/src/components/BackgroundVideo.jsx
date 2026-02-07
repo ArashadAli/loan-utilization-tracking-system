@@ -9,7 +9,7 @@ const BackgroundVideo = () => {
   preload="auto"
   poster="/video-poster.jpg"
   className="fixed inset-0 w-full h-full
-  object-cover scale-95
+  object-cover scale-100
   -z-10
   will-change-transform
   transform-gpu"

@@ -16,9 +16,9 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Product", href: "#product" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Templates", href: "#templates" },
+    { name: "Beneficiaries", href: "#beneficiaries" },
     { name: "Blog", href: "#blog" },
+    { name: "FAQs", href: "#faqs" },
   ];
 
   return (
